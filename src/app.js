@@ -10,6 +10,15 @@ $(document).ready(function() {
         $("#txtMySignal").val(JSON.stringify(token));
     });
 
+    p.on('connect', () => {
+        setInterval(() =>
+            p.send(Math.random()), 2000)
+    });
+
+    p.on('data', data => {
+        console.log("Nhan du lieu: " + data);
+    })
+
     $("#btnConnect").click(() => {
         const friendSignal = JSON.parse($("#txtFriendSignal").val());
         p.signal(friendSignal);
